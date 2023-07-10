@@ -74,7 +74,11 @@
 		\noindent\hangindent=2em\hangafter=0 % Indentation
 		\parbox{\spacebox}{        % Box to align text
 		\textit{#1}}			   % Entry name (birth, address, etc.)
-		\hspace{1.5em} #2 \par}    % Entry value	
+		\hspace{1.5em} #2 \par}    % Entry value
+
+\newcommand{\OnlySkill}[1]{
+    \SkillsEntry{}{#1}
+}
 		
 \newcommand{\EducationEntry}[4]{
 		\noindent \textbf{#1} \hfill      % Study
@@ -90,6 +94,9 @@
 		\noindent\hangindent=2em\hangafter=0 \small #4 % Description
 		\normalsize \par}
 
+\newcommand{\hide}[1]
+{}
+
 %%% Begin Document
 %%% ------------------------------------------------------------
 
@@ -100,37 +107,47 @@
 %		\includegraphics[width=0.15\textwidth]{photo}
 %\end{wrapfigure}
 
-%<{"description": "Your name", "type": "text", "maxLength": 25}
-\MyName{NAVNEET PANDEY}
-%>
-%\MySlogan{Indian Institute of Engineering Science and Technology,Shibpur}
-%<{"description": "Your slogan", "type": "text", "maxLength": 67}
-\MySlogan{M.Tech. in Electrical Engineering}
-%>
-\sepspace
-
-%%% Personal details
-%%% ------------------------------------------------------------
-\NewPart{Personal details}{}
 %<{"description": "Personal details", "type": "group"}
-    \PersonalEntry{Birth}
-    %<{"description": "Your birth date", "type": "date"}
-        {January 05, 1994}
+    %<{"description": "Your name", "type": "text", "maxLength": 25, inputValue: "NAVNEET PANDEY"}
+    \MyName{NAVNEET PANDEY}
     %>
-    \PersonalEntry{City}
-    %<{"description": "Your city", "type": "text", "maxLength": 62}
-        {Sultanpur Uttar Pradesh}
+    %\MySlogan{Indian Institute of Engineering Science and Technology,Shibpur}
+    %<{"description": "Your slogan", "type": "text", "maxLength": 67, inputValue: "M.Tech. in Electrical Engineering"}
+    \MySlogan{M.Tech. in Electrical Engineering}
     %>
-    \PersonalEntry{Phone}
-    %<{"description": "Your phone number", "type": "phonenumber"}
-        {+91-9654961533}
-    %>
+    \sepspace
+
+    %%% Personal details
+    %%% ------------------------------------------------------------
+    \NewPart{Personal details}{}
+        \PersonalEntry{Birth}
+        %<{"description": "Your birth date", "type": "text", inputValue: "January 05, 1994"}
+            {January 05, 1994}
+        %>
+        \PersonalEntry{City}
+        %<{"description": "Your city", "type": "text", "maxLength": 62, inputValue: "Sultanpur Uttar Pradesh"}
+            {Sultanpur Uttar Pradesh}
+        %>
+        \PersonalEntry{Phone}
+        %<{"description": "Your phone number", "type": "phonenumber", inputValue: "+91-9654961533"}
+            {+91-9654961533}
+        %>
         \PersonalEntry{E-mail}
         {\url
-            %<{"description": "Your email", "type": "email"}
+            %<{"description": "Your email", "type": "email", inputValue: "navneetpandey94@gmail.com"}
             {navneetpandey94@gmail.com}
             %>
         }
+        %<{type: "list", description: "Other information"}
+            %<{type: "group", description: ""}
+                %<{type: "text", description: "Description", inputValue: "Github"}
+                \PersonalEntry{Github}
+                %>
+                %<{type: "text", description: "Entry", inputValue: "NavPan94"}
+                {NavPan94}
+                %>
+            %>
+        %>
 %>
 
 %%% Education
@@ -139,119 +156,185 @@
     %<{"description": "Educational information", "type": "list"}
         %<{"description": "Your education", "type": "group"}
             \EducationEntry
-            %<{"description": "Education name", "type": "text", "maxLength": 62}
-                {M.Tech. Indian Institute of Technology,Varanasi}
+            %<{"description": "Education name", "type": "text", "maxLength": 62, inputValue: "M.Tech."}
+                {M.Tech.}
             %>
-            %<{"description": "Period (eg 2018-2022)", "type": "text", "maxLength": 10}
+            %<{"description": "Period (eg 2018-2022)", "type": "text", "maxLength": 10, inputValue: "2017-2019"}
                 {2017-2019}
             %>
-            %<{"description": "Extra info (optional)", "type": "text", "maxLength": 62}
+            %<{"description": "Institute", "type": "text", "maxLength": 62, inputValue: "Indian Institute of Technology,Varanasi"}
+                {Indian Institute of Technology,Varanasi}
+            %>
+            %<{"description": "Description (optional)", "type": "text", "maxLength": 62, inputValue: "Secured 8.34  CGPA."}
                 {Secured 8.34  CGPA.}
             %>
              \sepspace
         %>
-            \EducationEntry{B.Tech. Greater Noida Institute of Technology greater Noida}{2011-2015}{Secured 73.34 percentage.}
-    
+        %<{"description": "Your education", "type": "group"}
+        \EducationEntry
+            %<{"description": "Education name", "type": "text", "maxLength": 62, inputValue: "B.Tech."}
+                {B.Tech.}
+            %>
+            %<{"description": "Period (eg 2018-2022)", "type": "text", "maxLength": 10, inputValue: "2017-2019"}
+                {2011-2015}
+            %>
+            %<{"description": "Institute", "type": "text", "maxLength": 62, inputValue: "Greater Noida Institute of Technology greater Noida"}
+                {Greater Noida Institute of Technology greater Noida}
+            %>
+            %<{"description": "Description (optional)", "type": "text", "maxLength": 62, inputValue: "Secured 73.34 percentage."}
+                {Secured 73.34 percentage.}
+            %>
             \sepspace
-            
-            \EducationEntry{12th SVM Inter College}{2008-2010}{Uttar Pradesh Board of
-            Higher Education}{Secured 78.20\% marks in 12th standard.}
+        %>
+        %<{"description": "Your education", "type": "group"}
+        \EducationEntry
+            %<{"description": "Education name", "type": "text", "maxLength": 62, inputValue: "12th SVM Inter College"}
+                {12th SVM Inter College}
+            %>
+            %<{"description": "Period (eg 2018-2022)", "type": "text", "maxLength": 10, inputValue: "2008-2010"}
+                {2008-2010}
+            %>
+            %<{"description": "Institute", "type": "text", "maxLength": 62, inputValue: "Uttar Pradesh Board of Higher Education"}
+                {Uttar Pradesh Board of Higher Education}
+            %>
+            %<{"description": "Description (optional)", "type": "text", "maxLength": 62, inputValue: "Secured 78.20 marks in 12th standard."}
+                {Secured 78.20\% marks in 12th standard.}
+            %>
             \sepspace
-            
-            \EducationEntry{10th SVM Inter College}{2008}{Uttar Pradesh Board of
-            Secondary Education}{Secured 64.50\% marks in 10th standard.}
+        %>
+        %<{"description": "Your education", "type": "group"}
+        \EducationEntry
+            %<{"description": "Education name", "type": "text", "maxLength": 62, inputValue: "10th SVM Inter College"}
+                {10th SVM Inter College}
+            %>
+            %<{"description": "Period (eg 2018-2022)", "type": "text", "maxLength": 10, inputValue: "2017-2019"}
+                {2008}
+            %>
+            %<{"description": "Institute", "type": "text", "maxLength": 62, inputValue: "Uttar Pradesh Board of Secondary Education"}
+                {Uttar Pradesh Board of Secondary Education}
+            %>
+            %<{"description": "Description (optional)", "type": "text", "maxLength": 62, inputValue: "Secured 64.50 marks in 10th standard."}
+                {Secured 64.50\% marks in 10th standard.}
+            %>
+            \sepspace
+        %>
     %>
 %%% Work experience
 %%% ------------------------------------------------------------
 
-%<{"description": "Choose a name for the upcoming section (eg Work Experience, Internships, Competencies etc..)", "type": "text", "maxLength": 36}
+%<{type: "group", description: "Work experience"}
+    %<{description: "Section title (eg Work Experience, Internships, Competencies etc..)", type: "text", maxLength: 36, inputValue: "Internships"}
     \NewPart{Internships}
-%>
-{}
+    %>
+    {}
     %<{"description": "Experience information", "type": "list"}
         %<{"description": "Experience", "type": "group"}
-           \WorkEntry{Industrial Training} %<{"description": "Title", "type": "text", "maxLength": 58}>
-           {may 14- july 14} %<{"description": "Period (eg may 14 - july 14)", "type": "text", "maxLength": 17}>
-           {IPGCL, New Delhi} %<{"description": "Company", "type": "text", "maxLength": 40}>
-           {
-            Title : Relational inductive biases, deep learning, and graph networks\\Supervision : Under Dr. Malay Bhattacharyya, ISI, Kolkata\\About : Analyzing the neural networks to operate on graphs.%<{"description": "Description", "type": "textblock"}>
-           }
-    \sepspace
-             \sepspace
+        \WorkEntry{Industrial Training} %<{"description": "Title", "type": "text", "maxLength": 58, inputValue: "Industrial Training"}>
+            {May '14-July '14} %<{"description": "Period", "type": "text", "maxLength": 17, inputValue: "May '14-July '14"}>
+            {IPGCL, New Delhi} %<{"description": "Company", "type": "text", "maxLength": 40, inputValue: "IPGCL, New Delhi"}>
+            {
+                Title : Relational inductive biases, deep learning, and graph networks\\Supervision : Under Dr. Malay Bhattacharyya, ISI, Kolkata\\About : Analyzing the neural networks to operate on graphs.%<{type: "textblock", description: "Description", escapeLatex: false, inputValue: "Title : Relational inductive biases, deep learning, and graph networks\n\\\\\nSupervision : Under Dr. Malay Bhattacharyya, ISI, Kolkata\n\\\\\nAbout : Analyzing the neural networks to operate on graphs."}>
+            }
+        \sepspace
+        \sepspace
         %>
-    \WorkEntry{Summer Internship}{May'13-June'13}{Logicon Automation Lucknow}{Title : Overview of PLC SCADA and thier programming\\Supervision : Under Dr. Malay Bhattacharyya, ISI, Kolkata\\About : In this research work, we statistically analyzed how the miRNAs are related to Cancer causing
-    mutations.}    
+        %<{"description": "Experience", "type": "group"}
+        \WorkEntry{Summer Internship} %<{"description": "Title", "type": "text", "maxLength": 58, inputValue: "Summer Internship"}>
+            {May'13-June'13} %<{"description": "Period", "type": "text", "maxLength": 17, inputValue: "May'13-June'13"}>
+            {Logicon Automation Lucknow} %<{"description": "Company", "type": "text", "maxLength": 40, inputValue: "Logicon Automation Lucknow"}>
+            {
+                Title : Overview of PLC SCADA and thier programming\\Supervision : Under Dr. Malay Bhattacharyya, ISI, Kolkata\\About : In this research work, we statistically analyzed how the miRNAs are related to Cancer causing mutations.%<{type: "textblock", description: "Description", escapeLatex: false, inputValue: "Title : Overview of PLC SCADA and thier programming\n\\\\\nSupervision : Under Dr. Malay Bhattacharyya, ISI, Kolkata\n\\\\\nAbout : In this research work, we statistically analyzed how the miRNAs are related to Cancer causing mutations."}>
+            }
+        \sepspace
+        \sepspace
+        %>  
     %>
+%>
+
 
 %%% project
 %%% ------------------------------------------------------------
-\NewPart{Projects}{}
-
-%<{"description": "Projects", "type": "list"}
-    %<{"description": "Your project", "type": "group"}
-        \WorkEntry{M.Tech Project} %<{"description": "Project name", "type": "text", "maxLength": 58}>
-        {July'18-June'19} %<{"description": "Period (eg may 14 - july 14)", "type": "text", "maxLength": 17}>
-        {
-            Direct Torque Control of Induction Motor %<{"description": "Description", "type": "textblock"}>
-        }
+%<{type: "group", description: "Projects"}
+    %<{description: "Section title", type: "text", maxLength: 36, inputValue: "Projects"}
+    \NewPart{Projects}
+    %>
+    {}
+    %<{"description": "Project information", "type": "list"}
+        %<{"description": "Project", "type": "group"}
+        \WorkEntry{M.Tech Project} %<{"description": "Title", "type": "text", "maxLength": 58, inputValue: "M.Tech Project"}>
+            {July'18-June'19} %<{"description": "Period", "type": "text", "maxLength": 17, inputValue: "July'18-June'19"}>
+            {Direct Torque Control of Induction Motor} %<{"description": "Short description", "type": "text", "maxLength": 40, inputValue: "Direct Torque Control of Induction Motor"}>
+            {
+                Supervision : Under Dr. N K Swami Naidu, IIT BHU, Varanasi\\We have developed a Network-On-Chip simulator, Noxim. Our main objective was \\to develop a simulator that can perform all types of functionalities in a single platform.%<{type: "textblock", description: "Description", escapeLatex: false, inputValue: "Supervision : Under Dr. N K Swami Naidu, IIT BHU, Varanasi\n\\\\\nWe have developed a Network-On-Chip simulator, Noxim. Our main objective was \n\\\\\nto develop a simulator that can perform all types of functionalities in a single platform."}>
+            }
+        \sepspace
         \sepspace
         %>
-    {Supervision : Under Dr. N K Swami Naidu, IIT BHU, Varanasi\\We have developed a Network-On-Chip simulator, Noxim. Our main objective was \\to develop a simulator that can perform all types of functionalities in a single platform.}
-    \WorkEntry{Personal Project}{June'18-July'18}{Supervision : Under Dr. Santi P. Maity, IIEST, Shibpur\\Gold Code generation using 255 bit PN Generator and Multi-User Detection}{In this project we had designed a Gold Code Generator using two 255 bit PN Generator and analyzed its
-    properties.}
-    \sepspace
-
-
-    \WorkEntry{Personal Project}{Dec'17-present}{Supervision : Under Dr. Prasun Ghosal, IIEST, Shibpur\\Online Compiler and data storage}{I am working on a website from where anyone can take help for their coding, they can upload their codes
-    there, they can compile codes. If anyone wants to ask for help for particular purpose they can post their
-    problem statement there.}
+        %<{"description": "Project", "type": "group"}
+        \WorkEntry{Personal Project} %<{"description": "Title", "type": "text", "maxLength": 58, inputValue: "Personal Project"}>
+            {June'18-July'18} %<{"description": "Period", "type": "text", "maxLength": 17, inputValue: "June'18-July'18"}>
+            {Gold Code generation using 255 bit PN Generator and Multi-User Detection} %<{"description": "Short description", "type": "text", "maxLength": 40, inputValue: "Gold Code generation using 255 bit PN Generator and Multi-User Detection"}>
+            {
+                Supervision : Under Dr. Santi P. Maity, IIEST, Shibpur\\In this project we had designed a Gold Code Generator using two 255 bit PN Generator and analyzed its properties.%<{type: "textblock", description: "Description", escapeLatex: false, inputValue: "Supervision : Under Dr. Santi P. Maity, IIEST, Shibpur\n\\\\\nIn this project we had designed a Gold Code Generator using two 255 bit PN Generator and analyzed its properties."}>
+            }
+        \sepspace
+        \sepspace
+        %>
+        %<{"description": "Project", "type": "group"}
+        \WorkEntry{Personal Project} %<{"description": "Title", "type": "text", "maxLength": 58, inputValue: "Personal Project"}>
+            {Dec'17-present} %<{"description": "Period", "type": "text", "maxLength": 17, inputValue: "Dec'17-present"}>
+            {Online Compiler and data storage} %<{"description": "Short description", "type": "text", "maxLength": 40, inputValue: "Online Compiler and data storage"}>
+            {
+                Supervision : Under Dr. Prasun Ghosal, IIEST, Shibpur\\I am working on a website from where anyone can take help for their coding, they can upload their codes there, they can compile codes. If anyone wants to ask for help for particular purpose they can post their problem statement there.%<{type: "textblock", description: "Description", escapeLatex: false, inputValue: "Supervision : Under Dr. Prasun Ghosal, IIEST, Shibpur\n\\\\\nI am working on a website from where anyone can take help for their coding, they can upload their codes there, they can compile codes. If anyone wants to ask for help for particular purpose they can post their problem statement there."}>
+            }
+        \sepspace
+        \sepspace
+        %> 
+    %>
 %>
 
 %%% Skills
 %%% ------------------------------------------------------------
-\NewPart{Skills}{}
+%<{type: "group", description: "Skills"}
+    \NewPart{Skills}%<{type: "text", description: "Section title", maxLength: 36, inputValue: "Skills"}>
+    {}
 
-\SkillsEntry{Languages}
-{Bengali (mother tongue)} %<{"description": "Mother language", "type": "text"}>
-%<{"description": "Other languages", "type": "list"}
-    %<{"description": "Your language", "type": "group"}
-        \SkillsEntry{}
-        {English} %<{"description": "", "type": "text"}>
-    %>
-%>
-
-\sepspace
-
-%<{"description": "Other skills", "type": "list"}
-        %<{"description": "Your skill", "type": "group"}
-            \SkillsEntry{Programming} %<{"description": "General skill (eg programming, teaching, competitions..)", "type": "text"}>
-            {C/C++} %<{"description": "Sub skill you're most experienced with)", "type": "text"}>
-            %<{"description": "Other sub skills", "type": "list"}
-                %<{"description": "Your sub skill", "type": "group"}
-                    \SkillsEntry{}
-                    {Python} %<{"description": "", "type": "text"}>
+    % Get skill data
+    %<{type: "list", description: "", id: "skillGroupList"}
+        %<{type: "group", description: "Skill group", id: "skillGroup"}
+            \hide{}%<{type: "text", description: "Skill group name", inputValue: "Languages", id: "skillGroupName"}>
+            \hide{
+                %<{type: "list", description: "Skills", id: "skills"}
+                    %<{type: "text", description: "Skill", inputValue: "Bengali (mother tongue)"}>
+                    %<{type: "text", description: "Skill", inputValue: "English"}>
                 %>
-                \SkillsEntry{}{PHP}
-                \SkillsEntry{}{Java}
-                \SkillsEntry{}{VHDL}
-			%>
+            }
+        %>
+        %<{type: "group", description: "Skill group"}
+            \hide{}%<{type: "text", description: "Skill group name", inputValue: "Programming", id: "skillGroupName"}>
+            \hide{
+                %<{type: "list", description: "Skills", id: "skills"}
+                    %<{type: "text", description: "Skill", inputValue: "Python"}>
+                    %<{type: "text", description: "Skill", inputValue: "PHP"}>
+                %>
+            }
+        %>
+    %>
+
+    % Visualize the data
+    %<{type: "reference", id: "skillGroupList"}
+        %<{type: "reference", id: "skillGroup"}
+            \SkillsEntry{Languages} %<{type: "reference", id: "skillGroupName"}>
+            {Bengali (mother tongue)} %<{type: "reference", id: "skills", slice: "0:1"}>
+            \OnlySkill{English} %<{type: "reference", id: "skills", slice: "1"}>
             \sepspace
         %>
-    
-    \sepspace
-    
-    \SkillsEntry{Software}{\textsc{Matlab}, \textsc{Xilinx ISE}, \textsc{Bioinformatics}, \textsc{SystemC}}
-    \sepspace
-    
-    
-    \SkillsEntry{Subjects}{\textsc{Compiler Designing}, \textsc{Computer Nteworks}, \textsc{Algorithms}}
-    \SkillsEntry{}{\textsc{Operaing
-    System}, \textsc{DBMS}, \textsc{Microprocessor}}
-    \SkillsEntry{}{\textsc{Computer Architecture and Organisation }, \textsc{Graphics}}
-    \SkillsEntry{}{\textsc{Automata Theory and Natural Languages}}
-    \SkillsEntry{}{\textsc{Signals Systems and Circuits}, \textsc{Data Structures}}
-    \SkillsEntry{}{\textsc{Discrete Mathematics}, \textsc{Communication Systems}}
-    \SkillsEntry{}{\textsc{Digital Logic and Circuit Design}}
+    %>
+
+    %<{type: "preview"}
+        \SkillsEntry{Programming}{Python}
+        \SkillsEntry{}{PHP}
+    %>
 %>
 
 
